@@ -1,0 +1,48 @@
+.questions > li {
+    background-color: #ddd;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.breadcrumbs  .breadcrumb:before {
+    content: none;
+}
+
+.breadcrumbs  .breadcrumb:hover {
+    color: #ef9a9a !important;
+}
+
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.animationDragDrop {
+    outline: 1px solid red;
+}
+
+
+.wrapper-drag-layer-answer {
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    background-color: #26a69a;
+    color: #fff;
+}
+
+.answer-item-dragging {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.answer-item:hover {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
