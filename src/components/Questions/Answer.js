@@ -2,13 +2,24 @@ import React, {Component} from 'react'
 import {DragSource} from 'react-dnd'
 import {getEmptyImage} from 'react-dnd-html5-backend'
 
+
 class Answer extends Component {
 
     render() {
-        const {connectDragSource, isDragging} = this.props;
+        const {connectDragSource, isDragging, isSelected,selectedCorrectAnswer} = this.props;
+        let selectedCorrectAnswerClass = null;
+
+        if(selectedCorrectAnswer) {
+            selectedCorrectAnswerClass = '';
+        } else {
+            selectedCorrectAnswerClass = '';
+        }
+
         const {text} = this.props.answer;
         return connectDragSource(
-            <a className={`collection-item answer-item ${isDragging && 'answer-item-dragging'}`}>{text}</a>
+            <a className={`collection-item answer-item
+                           ${isDragging && 'answer-item-dragging'}
+                           ${isSelected && 'red lighten-2 white-text'}`}>{text}</a>
         )
     }
 
@@ -21,8 +32,7 @@ class Answer extends Component {
 const spec = {
     beginDrag(props) {
         return {
-            idAnswer: props.answer.idAnswer,
-            idTest: props.answer.idTest,
+            indexAnswer: props.index,
             textAnswer: props.answer.text,
             width: props.getWidth()
         }

@@ -11,7 +11,7 @@ class TestsRouter extends Component {
             <Fragment>
                 <Route path='/tests' component={Tests} exact/>
                 <Route path='/tests/:id' component={TestPage} exact/>
-                <Route path='/tests/:idTest/:questionsNumber' component={QuestionPage} exact/>
+                <Route path='/tests/:testId/:questionsNumber' component={QuestionPage} exact/>
             </Fragment>
         )
     }

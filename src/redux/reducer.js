@@ -4,7 +4,7 @@ import notificationsReducer,{moduleName as notificationsModule} from '../ducks/n
 import coursesReducer,{moduleName as coursesModule} from '../ducks/courses'
 import testsReducer,{moduleName as testsModule} from '../ducks/tests'
 import testPageReducer,{moduleName as testPageModule} from '../ducks/testPage'
-import questions,{moduleName as questionsModule} from '../ducks/questions'
+import questionsReducer,{moduleName as questionsModule} from '../ducks/questions'
 
 export default combineReducers({
     router,
@@ -12,5 +12,5 @@ export default combineReducers({
     [coursesModule]: coursesReducer,
     [testsModule]: testsReducer,
     [testPageModule]: testPageReducer,
-    [questionsModule]: questions,
+    [questionsModule]: questionsReducer,
 })

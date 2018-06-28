@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {DropTarget} from 'react-dnd'
 
 import './style.css'
+import {connect} from "react-redux";
+import {changeSelectedIndexAnswer} from "../../ducks/questions";
 
 class Flask extends Component {
     render() {
@@ -129,8 +131,8 @@ class Flask extends Component {
 
 const spec = {
     drop(props, monitor) {
-        const {idAnswer, idTest} = monitor.getItem();
-        console.log(idTest);
+        const {indexAnswer} = monitor.getItem();
+        props.changeSelectedIndexAnswer(indexAnswer);
     }
 };
 
@@ -139,4 +141,5 @@ const collect = (connect, monitor) => ({
     canDrop: monitor.canDrop()
 });
 
-export default DropTarget(['answer'], spec, collect)(Flask);
+export default connect(null, {changeSelectedIndexAnswer})(DropTarget(['answer'], spec, collect)(Flask));
+
