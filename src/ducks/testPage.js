@@ -25,7 +25,7 @@ export default function reducer(state = new ReducerRecord(), action) {
 }
 
 export function reqInit(testId) {
-    return (dispatch) => axios.get(`http://localhost:9876/rest/tests/init/${testId}`)
+    return (dispatch) => axios.get(`http://localhost:5000/rest/tests/init/${testId}`)
         .then((res) => {
             return dispatch({
                 type: INIT_TEST_SUCCESS,

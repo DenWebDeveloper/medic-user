@@ -33,7 +33,7 @@ export default function reducer(state = new ReducerRecord(), action) {
 }
 
 export function check() {
-    return (dispatch) => axios.get('http://localhost:9876/rest/notifications')
+    return (dispatch) => axios.get('http://localhost:5000/rest/notifications')
         .then(() => {
             M.toast({html: 'Успішно'});
             return dispatch({

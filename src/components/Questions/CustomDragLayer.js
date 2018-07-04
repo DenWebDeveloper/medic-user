@@ -4,14 +4,14 @@ import AnswerDragPreview from './AnswerDragPreview'
 
 const layerStyle = {
     position: 'fixed',
-    left:'0',
-    top:'0',
+    left: '0',
+    top: '0',
     pointerEvents: 'none',
     zIndex: 10000
 };
 
 const previewMap = {
-   answer: AnswerDragPreview
+    answer: AnswerDragPreview
 };
 
 class CustomDragLayer extends Component {
@@ -22,10 +22,11 @@ class CustomDragLayer extends Component {
         const {offset, item, itemType} = this.props;
         const {x, y} = offset;
         const PreviewComponent = previewMap[itemType];
-        const style = {
+        let style = {
             transform: `translate(${x}px, ${y}px)`,
             width: `${item.width}px`
         };
+
         return <div className='wrapper-drag-layer-answer  grey' style={style}><PreviewComponent {...item} /></div>
     }
 
@@ -48,5 +49,6 @@ const collect = (monitor) => ({
     item: monitor.getItem(),
     itemType: monitor.getItemType()
 });
+
 
 export default DragLayer(collect)(CustomDragLayer);

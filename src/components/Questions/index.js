@@ -12,6 +12,8 @@ import Breadcrumbs from './Breadcrumbs'
 import PaginationQuestions from './PaginationQuestions'
 import ScreenshotText from '../ScreenshotText'
 import Buttons from './Buttons'
+import Timer from '../Timer'
+import Countdown from '../Timer/Countdown'
 
 import './style.css'
 
@@ -36,7 +38,7 @@ class Questions extends Component {
         if (this.props.loading) return <Preloader/>;
 
         const {questionsNumber} = this.props.match.params;
-        const {testTitle, questions, passedQuestions, selectedIndexAnswer,selectedCorrectAnswer} = this.props;
+        const {testTitle, questions, passedQuestions, selectedIndexAnswer,selectedCorrectAnswer,timeSec} = this.props;
         const {testId} = this.state;
         const question = questions[passedQuestions];
 
@@ -48,22 +50,22 @@ class Questions extends Component {
                     <div className='s9 offset-1'>
                         <Breadcrumbs testId={testId} testTitle={testTitle} passedQuestions={passedQuestions}/>
                     </div>
-                    {/*<div className='s1'>*/}
-                    {/*<Timer remaining={20000} style={{color: 'white', backgroundColor: '#606060', padding: 16}}>*/}
-                    {/*<Countdown/>*/}
-                    {/*</Timer>*/}
-                    {/*</div>*/}
                 </div>
                 <div className='row'>
-                    <div className='s9 offset-1'>
+                    <div className='col s8 offset-1'>
                         <h5>Навігація по тестам</h5>
                         <PaginationQuestions questions={Object.values(questions)}
                                              activeItem={+questionsNumber}/>
                     </div>
+                    <div className="col s2">
+                        <Timer remaining={timeSec*1000}>
+                            <Countdown/>
+                        </Timer>
+                    </div>
                 </div>
                 <div className='row'>
                     <div className='s10 offset-1'>
-                        <ScreenshotText text={question.question}/>
+                        <ScreenshotText text={question.text}/>
                     </div>
                 </div>
                 <div className='row d-flex'>
@@ -107,6 +109,7 @@ export default connect(state => ({
     loading: state[moduleName].loading,
     questions: state[moduleName].questions,
     testTitle: state[moduleName].testTitle,
+    timeSec: state[moduleName].timeSec,
     passedQuestions: state[moduleName].passedQuestions,
     selectedIndexAnswer: state[moduleName].selectedIndexAnswer,
     selectedCorrectAnswer: state[moduleName].selectedCorrectAnswer

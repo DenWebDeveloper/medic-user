@@ -39,7 +39,7 @@ export default function reducer(state = new ReducerRecord(), action) {
 }
 
 export function reqInit() {
-    return (dispatch) => axios.get(`http://localhost:9876/rest/courses/init`)
+    return (dispatch) => axios.get(`http://localhost:5000/rest/courses/init`)
         .then((res) => {
             return dispatch({
                 type: INIT_COURSES_SUCCESS,
@@ -55,7 +55,7 @@ export function reqInit() {
 }
 
 export function addToBookmark(id) {
-    return (dispatch) => axios.get(`http://localhost:9876/rest/courses/save/bookmark/`)
+    return (dispatch) => axios.get(`http://localhost:5000/rest/courses/save/bookmark/`)
         .then(() => {
             M.toast({html: 'Успішно додано до закладок'});
             return dispatch({

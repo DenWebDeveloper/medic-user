@@ -39,7 +39,7 @@ export default function reducer(state = new ReducerRecord(), action) {
 }
 
 export function reqInit() {
-    return (dispatch) => axios.get(`http://localhost:9876/rest/tests/init`)
+    return (dispatch) => axios.get(`http://localhost:5000/rest/tests/init`)
         .then((res) => {
             return dispatch({
                 type: INIT_TESTS_SUCCESS,

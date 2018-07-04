@@ -1,25 +1,31 @@
 import React, {Component} from 'react'
 import {DragSource} from 'react-dnd'
 import {getEmptyImage} from 'react-dnd-html5-backend'
+import {connect} from "react-redux";
+import {moduleName} from "../../ducks/questions";
 
+const styleState = {
+    isSelected: 'grey lighten-2 black-text',
+    selectedCorrectAnswerClassTrue: 'teal white-text',
+    selectedCorrectAnswerClassFalse: 'red white-text'
+};
 
 class Answer extends Component {
 
     render() {
-        const {connectDragSource, isDragging, isSelected,selectedCorrectAnswer} = this.props;
-        let selectedCorrectAnswerClass = null;
+        const {connectDragSource, isDragging, isSelected, selectedCorrectAnswer} = this.props;
+        const {text} = this.props.answer;
+        let style = null;
 
-        if(selectedCorrectAnswer) {
-            selectedCorrectAnswerClass = '';
-        } else {
-            selectedCorrectAnswerClass = '';
+        if (selectedCorrectAnswer !== null && isSelected) {
+            selectedCorrectAnswer ? style = styleState.selectedCorrectAnswerClassTrue : style = styleState.selectedCorrectAnswerClassFalse;
+        } else if (isSelected) {
+            style = styleState.isSelected;
         }
 
-        const {text} = this.props.answer;
         return connectDragSource(
-            <a className={`collection-item answer-item
-                           ${isDragging && 'answer-item-dragging'}
-                           ${isSelected && 'red lighten-2 white-text'}`}>{text}</a>
+            <a className={`collection-item answer-item ${style}
+                         ${isDragging && 'answer-item-dragging'}`}>{text}</a>
         )
     }
 
@@ -36,6 +42,9 @@ const spec = {
             textAnswer: props.answer.text,
             width: props.getWidth()
         }
+    },
+    canDrag(props) {
+        return props.selectedCorrectAnswer === null
     }
 };
 
@@ -45,4 +54,6 @@ const collect = (connect, monitor) => ({
     isDragging: monitor.isDragging(),
 });
 
-export default DragSource('answer', spec, collect)(Answer);
+export default connect(state => ({
+    selectedCorrectAnswer: state[moduleName].selectedCorrectAnswer
+}), null)(DragSource('answer', spec, collect)(Answer))
