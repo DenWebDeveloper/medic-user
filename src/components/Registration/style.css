@@ -1,0 +1,33 @@
+.search-select__control {
+    width: 92%;
+    width: calc(100% - 3rem);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    font-size: 16px;
+    margin: 0 0 8px auto;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: box-shadow .3s, border .3s;
+}
+
+.search-select__menu {
+    width: 92% !important;
+    width: calc(100% - 3rem) !important;
+    right: 0;
+    z-index: 1000 !important;
+}
+
+.animation-rotate {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

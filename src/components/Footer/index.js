@@ -38,7 +38,7 @@ class Header extends Component {
                     </div>
                 </div>
                 <div className="footer-copyright">
-                    <div className="container">Всі права захищені | 2018 | Зроблено з любовю</div>
+                    <div className="container center-align">Всі права захищені | 2018 | Зроблено з любовю</div>
                 </div>
             </footer>
         )

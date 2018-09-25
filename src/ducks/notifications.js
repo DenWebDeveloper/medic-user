@@ -23,10 +23,8 @@ export default function reducer(state = new ReducerRecord(), action) {
     switch (type) {
         case CHECK_ACTIVE_SUCCESS:
             return state.set('buttonIsActive',false);
-
         case CHECK_ACTIVE_ERROR:
             return state;
-
         default:
             return state
     }

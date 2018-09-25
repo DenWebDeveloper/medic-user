@@ -16,10 +16,7 @@ class Courses extends Component {
                 <div className="col s12 m4" key={index}>
                     <div className="card">
                         <div className="card-image waves-effect waves-block waves-light">
-                            <img className="activator" src={item.img}/>
-                            <a className={`btn-floating halfway-fab waves-effect waves-light red tooltipped btn ${item.bookmark ? 'disabled' : false}`}
-                               data-tooltip="Додати в збережені" onClick={this.handleBookmarks.bind(this, item.id)}><i
-                                className="material-icons">add</i></a>
+                            <img className="activator" src='/storage/tests/20/preview.png'/>
                         </div>
                         <div className="card-content"><span
                             className="card-title activator grey-text text-darken-4">{item.name}<i

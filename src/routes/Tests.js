@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react'
 import {Route} from 'react-router-dom'
 
-import Tests from '../Tests'
-import TestPage from '../TestPage'
-import QuestionPage from '../Questions'
+import Tests from '../components/Tests'
+import TestPage from '../components/TestPage/index'
+import QuestionPage from '../components/Questions/index'
 
 class TestsRouter extends Component {
     render() {

@@ -9,14 +9,11 @@ class Flask extends Component {
     render() {
         const {connectDropTarget, canDrop} = this.props;
         return connectDropTarget(
-            <div className={`flask-wrapper ${canDrop? 'can-drop':''}`}>
+            <div className={`flask-wrapper ${canDrop ? 'can-drop' : ''}`}>
                 <svg version="1.1" id="flask" xmlns="http://www.w3.org/2000/svg"
                      xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 339 533"
                      enableBackground="new 0 0 339 533" xmlSpace="preserve">
-                    <animate accumulate="none" additive="replace" attributeName="cx" begin="click" calcMode="linear"
-                             dur="1s" fill="freeze" from={50} restart="always" to={450}>
-                    </animate>
-                    <g className="ellipses">
+                    <g>
                         <g>
                             <g>
                                 <path fill="#F200FF" d="M327.3,500.1c-0.3-0.8-0.3-1.7-0.2-2.5c-0.6-0.1-1.2-0.3-1.4-0.6c-0.8-1.4-5.2-13.2-6.7-14
@@ -61,67 +58,96 @@ class Flask extends Component {
                             <path fill="url(#SVGID_3_)" d="M217,113H115c-6.6,0-12-5.4-12-12v-2c0-6.6,5.4-12,12-12h102c6.6,0,12,5.4,12,12v2
 			C229,107.6,223.6,113,217,113z"/>
                         </g>
-                        <radialGradient id="SVGID_4_" cx={146} cy={164} r="12.0416"
-                                        gradientTransform="matrix(1 0 0 -1 0 534)" gradientUnits="userSpaceOnUse">
+                        <g className="ellipse-wrapper">
+                            <radialGradient id="SVGID_4_" cx={146} cy={164} r="12.0416"
+                                            gradientTransform="matrix(1 0 0 -1 0 534)" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <ellipse opacity="0.6" fill="url(#SVGID_4_)" enableBackground="new    " cx={146} cy={370}
+                            rx={11} ry={13}/>
+                            <radialGradient id="SVGID_5_" cx="305.6314" cy="83.8037" r="12.0416"
+                                            gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
+                                            gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <ellipse opacity="0.6" fill="url(#SVGID_5_)" enableBackground="new    " cx="143.3" cy="349.8"
+                            rx={7} ry="7.5"/>
+                            <radialGradient id="SVGID_6_" cx="204.5615" cy="131.7501" r="12.0418"
+                                            gradientTransform="matrix(0.9091 0 0 -0.7692 -14.6335 459.6755)"
+                                            gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <circle opacity="0.6" fill="url(#SVGID_6_)" enableBackground="new    " cx="171.3" cy="358.3"
+                            r={10}/>
+                            <radialGradient id="SVGID_7_" cx="356.9618" cy="-0.5552" r="12.0416"
+                                            gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
+                                            gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <ellipse opacity="0.6" fill="url(#SVGID_7_)" enableBackground="new    " cx={176} cy="398.5"
+                            rx={7} ry="7.5"/>
+                            <radialGradient id="SVGID_8_" cx="384.1984" cy="86.1149" r="12.0416"
+                                            gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
+                                            gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <ellipse opacity="0.6" fill="url(#SVGID_8_)" enableBackground="new    " cx="193.3" cy="348.5"
+                            rx={7} ry="7.5"/>
+                            <radialGradient id="SVGID_9_" cx={190} cy={158} r="12.0416"
+                                            gradientTransform="matrix(1 0 0 -1 0 534)" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <ellipse opacity="0.6" fill="url(#SVGID_9_)" enableBackground="new    " cx={190} cy={376}
+                            rx={11} ry={13}/>
+                            <radialGradient id="SVGID_10_" cx="388.3886" cy="-15.2891" r="12.0416"
+                                                                      gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
+                                                                      gradientUnits="userSpaceOnUse">
                             <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
                             <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
                             <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
                         </radialGradient>
-                        <ellipse opacity="0.6" fill="url(#SVGID_4_)" enableBackground="new    " cx={146} cy={370}
-                                 rx={11} ry={13}/>
-                        <radialGradient id="SVGID_5_" cx="305.6314" cy="83.8037" r="12.0416"
-                                        gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
-                                        gradientUnits="userSpaceOnUse">
-                            <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
-                            <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
-                            <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
-                        </radialGradient>
-                        <ellipse opacity="0.6" fill="url(#SVGID_5_)" enableBackground="new    " cx="143.3" cy="349.8"
-                                 rx={7} ry="7.5"/>
-                        <radialGradient id="SVGID_6_" cx="204.5615" cy="131.7501" r="12.0418"
-                                        gradientTransform="matrix(0.9091 0 0 -0.7692 -14.6335 459.6755)"
-                                        gradientUnits="userSpaceOnUse">
-                            <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
-                            <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
-                            <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
-                        </radialGradient>
-                        <circle opacity="0.6" fill="url(#SVGID_6_)" enableBackground="new    " cx="171.3" cy="358.3"
-                                r={10}/>
-                        <radialGradient id="SVGID_7_" cx="356.9618" cy="-0.5552" r="12.0416"
-                                        gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
-                                        gradientUnits="userSpaceOnUse">
-                            <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
-                            <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
-                            <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
-                        </radialGradient>
-                        <ellipse opacity="0.6" fill="url(#SVGID_7_)" enableBackground="new    " cx={176} cy="398.5"
-                                 rx={7} ry="7.5"/>
-                        <radialGradient id="SVGID_8_" cx="384.1984" cy="86.1149" r="12.0416"
-                                        gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
-                                        gradientUnits="userSpaceOnUse">
-                            <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
-                            <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
-                            <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
-                        </radialGradient>
-                        <ellipse opacity="0.6" fill="url(#SVGID_8_)" enableBackground="new    " cx="193.3" cy="348.5"
-                                 rx={7} ry="7.5"/>
-                        <radialGradient id="SVGID_9_" cx={190} cy={158} r="12.0416"
-                                        gradientTransform="matrix(1 0 0 -1 0 534)" gradientUnits="userSpaceOnUse">
-                            <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
-                            <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
-                            <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
-                        </radialGradient>
-                        <ellipse opacity="0.6" fill="url(#SVGID_9_)" enableBackground="new    " cx={190} cy={376}
-                                 rx={11} ry={13}/>
-                        <radialGradient id="SVGID_10_" cx="388.3886" cy="-15.2891" r="12.0416"
-                                        gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
-                                        gradientUnits="userSpaceOnUse">
-                            <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
-                            <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
-                            <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
-                        </radialGradient>
-                        <ellipse opacity="0.6" fill="url(#SVGID_10_)" enableBackground="new    " cx={196} cy={407}
-                                 rx={7} ry="7.5"/>
+                            <ellipse opacity="0.6" fill="url(#SVGID_10_)" enableBackground="new" cx={196} cy={407}
+                                     rx={7} ry="7.5"/>
+                            <radialGradient id="SVGID_11_" cx="388.3886" cy="-15.2891" r="12.0416"
+                                            gradientTransform="matrix(0.6364 0 0 -0.5769 -51.1705 398.1797)"
+                                            gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <ellipse opacity="0.6" fill="url(#SVGID_11_)" enableBackground="new" cx={196} cy={407}
+                                     rx={7} ry="7.5"/>
+                            <radialGradient id="SVGID_12_" cx="204.5615" cy="131.7501" r="12.0418"
+                                            gradientTransform="matrix(0.9091 0 0 -0.7692 -14.6335 459.6755)"
+                                            gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <circle opacity="0.6" fill="url(#SVGID_12_)" enableBackground="new    " cx="171.3" cy="358.3"
+                                    r={10}/>
+                            <radialGradient id="SVGID_13_" cx="204.5615" cy="131.7501" r="12.0418"
+                                            gradientTransform="matrix(0.9091 0 0 -0.7692 -14.6335 459.6755)"
+                                            gradientUnits="userSpaceOnUse">
+                                <stop offset="0.3604" style={{stopColor: '#E2E2E2'}}/>
+                                <stop offset="0.9141" style={{stopColor: '#BDBDBD', stopOpacity: '0.7'}}/>
+                                <stop offset={1} style={{stopColor: '#FFFFFF'}}/>
+                            </radialGradient>
+                            <circle opacity="0.6" fill="url(#SVGID_13_)" enableBackground="new    " cx="171.3" cy="358.3"
+                                    r={10}/>
+                        </g>
                     </g>
                 </svg>
             </div>

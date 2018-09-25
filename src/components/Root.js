@@ -1,34 +1,37 @@
-import React, {Component, Fragment} from 'react'
-import {Route, Switch} from 'react-router-dom'
-
-import Header from './Header'
-import Main from './routes/Main'
-import TestRouter from './routes/Tests'
-import CoursesRouter from './routes/Courses'
-import Footer from './Footer'
-import CalendarTimeline from '../ducks/CalendarTimeline'
+import React, {Component} from 'react'
+import {Redirect, Route, Switch} from 'react-router-dom'
+import Cookies from 'js-cookie'
+import Main from '../routes/Main'
+import TestRouter from '../routes/Tests'
+import CoursesRouter from '../routes/Courses'
 import NotFound from './NotFound'
+import Login from './Login'
+import Registration from './Registration'
+
+import PrivateRoute from '../helpers/PrivateRouter'
 
 import 'materialize-css/dist/css/materialize.css'
 
-
 class Root extends Component {
 
-    render() {
-        return (
-            <Fragment>
-                <Header/>
-                <Switch>
-                    <Route path='/' component={Main} exact/>
-                    <Route path='/tests' component={TestRouter}/>
-                    <Route path='/courses' component={CoursesRouter}/>
-                    <Route path='/calendarTimeline' component={CalendarTimeline} exact/>
-                    <Route path='*' component={NotFound} exact/>
-                </Switch>
-                <Footer/>
-            </Fragment>
-        )
-    }
+	checkAuth(Component) {
+		if (Cookies.get('token')) return <Redirect to="/"/>
+		return Component
+	}
+
+	render() {
+		return (
+			<Switch>
+				<Route path='/login' render={() => this.checkAuth(<Login/>)} exact/>
+				<Route path='/registration' render={() => this.checkAuth(<Registration/>)} exact/>
+				<PrivateRoute path='/' component={Main} exact/>
+				<PrivateRoute path='/tests' component={TestRouter}/>
+				<PrivateRoute path='/courses' component={CoursesRouter}/>
+				<PrivateRoute path='/support' component={TestRouter}/>
+				<Route path='*' component={NotFound} exact/>
+			</Switch>
+		)
+	}
 }
 
 export default Root

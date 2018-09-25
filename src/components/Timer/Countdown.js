@@ -4,21 +4,20 @@ import CircularProgressbar from 'react-circular-progressbar';
 
 import 'react-circular-progressbar/dist/styles.css';
 
-const Countdown = (props, context) => {
-    const d = new Date(context.remaining); // auto passed context.remaining
-    const {seconds} = {
-        seconds: d.getUTCSeconds(),
-    };
+const Countdown = (props) => {
+    const {remainingSec, timeLeftSec} = props;
+
     return (
         <CircularProgressbar
-            percentage={100 -(seconds * 100 / 30)}
-            text={`${seconds} ceк`}
+            percentage={100 -(timeLeftSec * 100 / remainingSec)}
+            text={`${Math.ceil(timeLeftSec)} ceк`}
         />
     );
 };
 
-Countdown.contextTypes = {
-    remaining: PropTypes.number,
+Countdown.propTypes = {
+    remainingSec: PropTypes.number.isRequired,
+    timeLeftSec: PropTypes.number.isRequired,
 };
 
 export default Countdown;

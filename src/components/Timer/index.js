@@ -1,76 +1,54 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import {saveTime} from '../../ducks/questions';
+import Countdown from './Countdown'
+import {connect} from "react-redux";
+
 class Timer extends Component {
-    static propTypes = {
-        interval: PropTypes.number, // msec
-        remaining: PropTypes.number.isRequired, // msec
-        afterTick: PropTypes.func, // callback after each ticks
-        afterComplete: PropTypes.func, // callback after remaining <= 0
-        children: PropTypes.node, // children react element node
-    };
 
-    static defaultProps = {
-        interval: 1000,
-        afterTick: null,
-        afterComplete: null,
-        style: {},
-        children: null,
-    };
+    constructor(props) {
+        super(props);
 
-    static childContextTypes = {
-        remaining: PropTypes.number,
-    };
+        this.startDate = new Date();
 
-    constructor(props, ...args) {
-        super(props, ...args);
-        this.timerId = null;
-        this.prevTime = null;
-        this.state = { remaining: props.remaining };
-    }
-
-    getChildContext() {
-        return { remaining: this.state.remaining };
-    }
-
-    componentDidMount() {
-        this.timerId = setInterval(this.handleTick.bind(this), this.props.interval);
-        this.prevTime = Date.now();
-    }
-
-    componentWillUnmount() {
-        this.clearTimer();
-    }
-
-    clearTimer() {
-        clearInterval(this.timerId);
-        this.timerId = null;
-        this.prevTime = null;
-    }
-
-    handleTick() {
-        const currentTime = Date.now();
-        const elapsed = currentTime - this.prevTime;
-        const nextRemaining = this.state.remaining - elapsed;
-        if (nextRemaining <= 0) {
-            if (this.props.afterComplete !== null) {
-                this.props.afterComplete();
-            }
-            this.clearTimer();
-            this.setState({ remaining: 0 });
-        } else {
-            if (this.props.afterTick !== null) {
-                this.props.afterTick(nextRemaining);
-            }
-            this.prevTime = currentTime;
-            this.setState({ remaining: nextRemaining });
+        this.state = {
+            timeLeftMilliSec: this.props.remainingSec * 1000
         }
     }
 
+
+    tick() {
+        const timeDifferenceMilliSec = new Date - this.startDate;
+        this.startDate = new Date();
+        this.setState((prevState) => {
+                return {
+                    timeLeftMilliSec: prevState.timeLeftMilliSec - 1000
+                }
+            },()=>console.log(this.state.timeLeftMilliSec / 1000)
+        )
+    }
+
     render() {
-        const { style, children } = this.props;
-        return <div style={style}>{children}</div>;
+        const {remainingSec} = this.props;
+        const {timeLeftMilliSec } = this.state;
+        return <Countdown timeLeftSec={timeLeftMilliSec / 1000} remainingSec={remainingSec}/>;
+    }
+
+    componentDidMount() {
+        this.timerID = setInterval(
+            () => this.tick(),
+            1000
+        );
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
     }
 }
 
-export default Timer;
+Timer.propTypes = {
+    remainingSec: PropTypes.number.isRequired, // msec
+};
+
+export default connect(null, {saveTime})(Timer)

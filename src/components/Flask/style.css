@@ -6,44 +6,67 @@
     width: 300px;
 }
 
-#flask circle,
-#flask ellipse {
-    animation-duration: 20s;
+#flask .ellipse-wrapper ellipse,
+#flask .ellipse-wrapper circle {
+    animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
     animation-name: circle;
 }
 
-#flask .ellipses .ellipse:nth-child(1) {
-    animation-duration: 5000ms;
-}
-
-#flask .ellipses .ellipse:nth-child(2) {
-    animation-duration: 5000ms;
-    animation-delay: 100ms;
-}
-
-#flask .ellipses .ellipse:nth-child(3) {
-    animation-duration: 5000ms;
-    animation-delay: 200ms;
-}
-
-#flask circle {
-    animation-duration: 7200ms;
-    animation-delay: 300ms;
-}
-
 @keyframes circle {
+
     0% {
-        transform: translateY(0px);
-        opacity: 1;
+        transform: translateY(19px);
+        opacity: 0;
     }
-    90% {
-        transform: translateY(-200px);
+
+    1% {
+        transform: translateY(20px);
         opacity: 1;
     }
 
     100% {
+        transform: translateY(-400px);
         opacity: 0;
     }
 }
+
+#flask .ellipse-wrapper ellipse:nth-child(2) {
+    animation-delay: 3s;
+}
+
+#flask .ellipse-wrapper ellipse:nth-child(4) {
+    animation-delay: 1s;
+}
+
+#flask .ellipse-wrapper  circle:nth-child(6) {
+    animation-delay: 2s;
+}
+
+#flask .ellipse-wrapper  circle:nth-child(8) {
+    animation-delay: 4s;
+}
+
+#flask .ellipse-wrapper ellipse:nth-child(10) {
+    animation-delay: 8s;
+}
+
+#flask .ellipse-wrapper ellipse:nth-child(12) {
+    animation-delay: 6s;
+}
+
+#flask .ellipse-wrapper ellipse:nth-child(14) {
+    animation-delay: 6s;
+}
+
+#flask .ellipse-wrapper ellipse:nth-child(16) {
+    animation-delay: 6s;
+}
+
+#flask .ellipse-wrapper  circle:nth-child(18) {
+    animation-delay: 6s;
+}
+
+
+

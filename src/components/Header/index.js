@@ -27,13 +27,10 @@ class Header extends Component {
                                 <NavLink to='/' activeClassName="active" exact >Головна</NavLink>
                             </li>
                             <li className="tab">
-                                <NavLink to='/calendarTimeline' activeClassName="active" exact >Календар</NavLink>
-                            </li>
-                            <li className="tab">
                                 <NavLink to='/save' activeClassName="active" exact >Збережені матеріали</NavLink>
                             </li>
                             <li className="tab">
-                                <NavLink to='/supports' activeClassName="active" exact >Підтримка</NavLink>
+                                <NavLink to='/support' activeClassName="active" exact >Підтримка</NavLink>
                             </li>
                         </ul>
                     </div>

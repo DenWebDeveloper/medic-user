@@ -13,7 +13,6 @@ import PaginationQuestions from './PaginationQuestions'
 import ScreenshotText from '../ScreenshotText'
 import Buttons from './Buttons'
 import Timer from '../Timer'
-import Countdown from '../Timer/Countdown'
 
 import './style.css'
 
@@ -38,7 +37,7 @@ class Questions extends Component {
         if (this.props.loading) return <Preloader/>;
 
         const {questionsNumber} = this.props.match.params;
-        const {testTitle, questions, passedQuestions, selectedIndexAnswer,selectedCorrectAnswer,timeSec} = this.props;
+        const {testTitle, questions, passedQuestions, selectedIndexAnswer,selectedCorrectAnswer,timeRecommendedSec,timeAllSec} = this.props;
         const {testId} = this.state;
         const question = questions[passedQuestions];
 
@@ -52,15 +51,22 @@ class Questions extends Component {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col s8 offset-1'>
+                    <div className='col s6 offset-1'>
                         <h5>Навігація по тестам</h5>
                         <PaginationQuestions questions={Object.values(questions)}
                                              activeItem={+questionsNumber}/>
                     </div>
-                    <div className="col s2">
-                        <Timer remaining={timeSec*1000}>
-                            <Countdown/>
-                        </Timer>
+                    <div className="col s4">
+                        <div className="row">
+                            <div className="col s6 center-align">
+                                <h6>Рекомендований час:</h6>
+                                <Timer remainingSec={timeRecommendedSec}/>
+                            </div>
+                            <div className="col s6 center-align">
+                                <h6>Загальний таймер:</h6>
+                                <Timer notUpdateTime remainingSec={timeAllSec}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='row'>
@@ -112,5 +118,7 @@ export default connect(state => ({
     timeSec: state[moduleName].timeSec,
     passedQuestions: state[moduleName].passedQuestions,
     selectedIndexAnswer: state[moduleName].selectedIndexAnswer,
-    selectedCorrectAnswer: state[moduleName].selectedCorrectAnswer
+    selectedCorrectAnswer: state[moduleName].selectedCorrectAnswer,
+    timeRecommendedSec: state[moduleName].timeRecommendedSec,
+    timeAllSec: state[moduleName].timeAllSec,
 }), {reqInit})(Questions)
