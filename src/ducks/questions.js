@@ -1,4 +1,4 @@
-import axios from 'axios'
+import api from '../helpers/axios'
 import {Record} from 'immutable'
 
 export const moduleName = 'questions'
@@ -58,7 +58,7 @@ export default function reducer(state = new ReducerRecord(), action) {
 }
 
 export function reqInit(testId) {
-	return (dispatch) => axios.get(`http://localhost:5000/rest/questions/${testId}`)
+	return (dispatch) => api.get('/tests/18/18')
 		.then((res) => {
 			return dispatch({
 				type: INIT_QUESTIONS_SUCCESS,

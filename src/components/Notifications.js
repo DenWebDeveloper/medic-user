@@ -1,32 +1,56 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {check, moduleName} from '../ducks/notifications'
+import api from '../helpers/axios'
+
+import Preloader from './Preloader'
 
 class Notifications extends Component {
+	constructor(props) {
+		super(props)
 
-	getNotifications() {
-		return this.props.notifications.map((item, index) => {
+		this.state = {
+			loading: false,
+			notifications: [],
+			err: null
+		}
+	}
+
+	notifications() {
+		return this.state.notifications.map((item, index) => {
 			return (
-				<div key={index} className="card-panel"><span
-					className="red-text flow-text">{item.text}</span>
+				<div key={index} className="card-panel">
+					<div className="red-text flow-text">{item.text}</div>
+					<span className='text-center'>{item.created_at}</span>
 				</div>
 			)
 		})
 	}
 
 	render() {
+		const {loading} = this.state
 		return (
 			<div className="container">
 				<div className="row">
 					<h2>Важливі повідомлення</h2>
-					{this.getNotifications()}
+					{loading ? <Preloader/> : this.notifications()}
 				</div>
 			</div>
 		)
 	}
+
+	componentDidMount() {
+		api.get('/notifications').then(res => {
+			this.setState(() => ({
+				loading: false,
+				notifications: res.data.data
+			}))
+		}).catch(err => {
+			console.error(err)
+			this.setState(() => ({
+				err: 'Cталась помилка. Перевірте інтернет. Обновіть сторінку. Якщо проблема з часом не зникне напишіть в тех підтримку'
+			}))
+		})
+	}
+
 }
 
-export default connect(state => ({
-	buttonIsActive: state[moduleName].buttonIsActive,
-	notifications: state[moduleName].notifications
-}), {check})(Notifications)
+export default Notifications

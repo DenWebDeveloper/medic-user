@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {DragLayer} from 'react-dnd'
-import AnswerDragPreview from './AnswerDragPreview'
+import AnswerDragPreview from '../../ducks/AnswerDragPreview'
 
 const layerStyle = {
     position: 'fixed',

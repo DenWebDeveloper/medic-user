@@ -21,9 +21,8 @@ instance.interceptors.response.use((response) => {
 	return response
 }, (err) => {
 	if (err.response && err.response.status === 401) {
-		console.log('Cookies remove')
-		//Cookies.remove('token')
-		history.push('/')
+		Cookies.remove('token')
+		history.push('/login')
 	}
 	return Promise.reject(err)
 })

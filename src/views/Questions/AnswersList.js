@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
 
 import Answer from './Answer'
-import {moduleName, reqInit} from '../../ducks/testPage'
-import {connect} from 'react-redux'
-import PaginationQuestions from './PaginationQuestions'
 import PropTypes from 'prop-types'
 
 class AnswersList extends Component {
@@ -27,7 +24,7 @@ class AnswersList extends Component {
     }
 }
 
-PaginationQuestions.propTypes = {
+AnswersList.propTypes = {
     answers: PropTypes.array.isRequired,
     selectedIndexAnswer: PropTypes.number.isRequired,
 };
