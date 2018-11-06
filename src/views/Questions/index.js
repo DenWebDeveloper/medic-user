@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import api from '../../helpers/axios'
-
+import {moduleName} from '../../ducks/questions'
+import {connect} from 'react-redux'
 import Preloader from '../../components/Preloader/index'
 import Flask from '../../components/Flask/index'
 import CustomDragLayer from './CustomDragLayer'
@@ -8,6 +9,7 @@ import Breadcrumbs from './Breadcrumbs'
 import SimplePagination from '../../components/SimplePagination'
 import ScreenshotText from '../../components/ScreenshotText'
 import AnswersList from './AnswersList'
+import M, {toast} from 'materialize-css'
 
 import './style.css'
 import Header from '../../components/Header'
@@ -31,10 +33,8 @@ class Questions extends Component {
 	}
 
 	render() {
-		const state = this.state
+		const {state, props} = this
 		if (state.loading) return <Preloader/>
-		console.log(state.number)
-		console.log(state)
 		return (
 			<Fragment>
 				<Header/>
@@ -68,8 +68,11 @@ class Questions extends Component {
 					<div className='row d-flex'>
 						<div className='col s10 l7'>
 							<CustomDragLayer/>
-							<AnswersList selectedIndexAnswer={0} answers={state.answers}/>
-							{/*<Buttons testId={testId}/>*/}
+							<AnswersList selectedIndexAnswer={props.selectedIndexAnswer} answers={state.answers}/>
+							<a onClick={this.sendAnswers.bind(this)}
+							   className={`${props.selectedIndexAnswer === null && 'disabled'} btn waves-effect waves-light`}>Далі
+								<i className='material-icons right'>send</i>
+							</a>
 						</div>
 						<div className='col s10 l5 center-align'>
 							<Flask/>
@@ -85,6 +88,21 @@ class Questions extends Component {
 		this.getQuestions()
 	}
 
+	sendAnswers() {
+		const {testId, numberQuestion, questionId, answers} = this.state
+		api.post('/tests/go', {
+			testId,
+			numberQuestion,
+			questionId,
+			idAnswer: answers[this.props.selectedIndexAnswer].id
+		}).then(() => {
+			toast({html: 'Успішно'})
+		}).catch(err => {
+			console.log(err)
+			M.toast({html: 'Помилка. Сробуйте відправити ще раз', classes: 'red'})
+		})
+	}
+
 	getQuestions() {
 		api.get('/tests/go').then((res) => {
 			const data = res.data.data
@@ -92,6 +110,7 @@ class Questions extends Component {
 				loading: false,
 				questionText: data.question.text,
 				numberQuestion: data.numberQuestion,
+				questionId: data.question.id,
 				answers: data.answers,
 				testName: data.testName,
 				testId: data.testId
@@ -102,4 +121,6 @@ class Questions extends Component {
 }
 
 
-export default Questions
+export default connect(state => ({
+	selectedIndexAnswer: state[moduleName].selectedIndexAnswer,
+}))(Questions)
